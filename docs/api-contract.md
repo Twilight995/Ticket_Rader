@@ -153,7 +153,7 @@
       "severityLabel": "확인 필요",
       "listingQuote": "장당 25만",
       "official": { "text": "VIP 정가 165,000원", "sourceUrl": "https://example.com/notice#price", "checkedOn": "2026-10-28" },
-      "explanation": "판매가 250,000원은 VIP 정가 165,000원의 약 1.5배예요. 정가와 차이가 나는 이유를 판매자와 예매처에 확인해 보세요.",
+      "explanation": "판매가 250,000원은 VIP 정가 165,000원보다 85,000원 높아요. 정가와 차이가 나는 이유를 판매자와 예매처에 확인해 보세요.",
       "details": { "ratio": 1.52, "listPrice": 165000, "matchedGrade": "VIP" }
     },
     {
@@ -163,7 +163,7 @@
       "severityLabel": "확인 필요",
       "listingQuote": "QR 캡처로 보내드려요",
       "official": { "text": "캡처 화면이나 사진으로는 입장할 수 없습니다.", "sourceUrl": "https://example.com/notice#rules", "checkedOn": "2026-10-28" },
-      "explanation": "판매글은 캡처·QR로 전달한다고 하지만, 공식 안내는 캡처 화면으로는 입장할 수 없다고 해요.",
+      "explanation": "판매글의 전달 방식은 '캡처·QR 전송'이고, 공식 안내에는 '캡처 입장 불가' 규정이 있어요. 이 방법으로 받은 티켓으로 입장이 가능한지 예매처에 확인해 보세요.",
       "details": { "deliveryMethod": "CAPTURE_QR", "ruleType": "CAPTURE_ENTRY_NOT_ALLOWED" }
     },
     {

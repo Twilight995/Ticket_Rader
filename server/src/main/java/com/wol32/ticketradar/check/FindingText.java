@@ -65,17 +65,18 @@ final class FindingText {
 
     // --- 쉬운 말 설명 1~2문장 ---
 
-    static String aboveList(int price, PriceTierResponse tier, double ratio) {
-        return "판매가 " + won(price) + "원은 " + tier.grade() + " 정가 " + won(tier.price()) + "원의 약 "
-                + String.format(Locale.ROOT, "%.1f", ratio) + "배예요. 정가와 차이가 나는 이유를 판매자와 예매처에 확인해 보세요.";
+    static String aboveList(int price, PriceTierResponse tier) {
+        return "판매가 " + won(price) + "원은 " + tier.grade() + " 정가 " + won(tier.price()) + "원보다 "
+                + won(price - tier.price()) + "원 높아요. 정가와 차이가 나는 이유를 판매자와 예매처에 확인해 보세요.";
     }
 
     static String notComparable(String seat, List<PriceTierResponse> tiers) {
-        String grades = tiers.stream().map(PriceTierResponse::grade).collect(Collectors.joining(", "));
+        String table = tiers.isEmpty() ? "공식 정가표가 아직 등록되지 않았어요."
+                : "공식 정가표에 있는 등급은 " + tiers.stream().map(PriceTierResponse::grade).collect(Collectors.joining(", ")) + " 예요.";
         if (seat == null || seat.isBlank()) {
-            return "좌석 등급을 알 수 없어 공식 정가와 비교하지 못했어요. 좌석 등급(" + grades + ")을 확인한 뒤 정가표와 맞춰 보세요.";
+            return "좌석 등급을 알 수 없어 공식 정가와 비교하지 못했어요. " + table;
         }
-        return "'" + seat.strip() + "'에 해당하는 등급을 공식 정가표(" + grades + ")에서 찾지 못했어요. 좌석 등급을 확인한 뒤 정가표와 맞춰 보세요.";
+        return "'" + seat.strip() + "'에 해당하는 등급을 공식 정가표에서 찾지 못했어요. " + table;
     }
 
     static String prepayment() {
@@ -83,8 +84,8 @@ final class FindingText {
     }
 
     static String deliveryConflict(DeliveryMethod method, RuleResponse rule) {
-        return "판매글의 전달 방식(" + method.label() + ")은 공식 안내의 '" + rule.type().label()
-                + "' 규정과 맞지 않아요. 이 방법으로 받은 티켓으로 입장이 가능한지 예매처에 확인해 보세요.";
+        return "판매글의 전달 방식은 '" + method.label() + "'이고, 공식 안내에는 '" + rule.type().label()
+                + "' 규정이 있어요. 이 방법으로 받은 티켓으로 입장이 가능한지 예매처에 확인해 보세요.";
     }
 
     static String transferProhibited() {

@@ -93,6 +93,7 @@ class RuleEngineTest {
         assertThat(price.official().checkedOn()).isEqualTo(CHECKED);
         assertThat(price.details()).containsEntry("listPrice", 165000).containsEntry("matchedGrade", "VIP");
         assertThat(((Number) price.details().get("ratio")).doubleValue()).isBetween(1.51, 1.52);
+        assertThat(price.explanation()).contains("85,000원 높아요");
 
         Finding delivery = findings.get(1);
         assertThat(delivery.listingQuote()).isEqualTo("QR 캡처로 보내드려요");
@@ -117,6 +118,27 @@ class RuleEngineTest {
         assertThat(price.type()).isEqualTo(FindingType.PRICE_ABOVE_LIST);
         assertThat(price.severity()).isEqualTo(Severity.CAUTION);
         assertThat(price.severityLabel()).isEqualTo("주의");
+    }
+
+    @Test
+    void ratio_is_decided_on_the_raw_value_not_the_rounded_one() {
+        // VIP 165,000: 247,500 = 1.5배 정확히 → 확인 필요, 247,000 = 1.497배 → 주의 (반올림하면 1.50이라 틀리기 쉽다)
+        Finding exactly = engine.evaluate(request(247500, "VIP", 1, null, null, null), EVENT).get(0);
+        Finding justBelow = engine.evaluate(request(247000, "VIP", 1, null, null, null), EVENT).get(0);
+
+        assertThat(exactly.severity()).isEqualTo(Severity.CHECK);
+        assertThat(justBelow.severity()).isEqualTo(Severity.CAUTION);
+        assertThat(justBelow.details()).containsEntry("ratio", 1.5);
+        assertThat(engine.evaluate(request(165000, "VIP", 1, null, null, null), EVENT)).isEmpty();
+    }
+
+    @Test
+    void one_letter_grade_inside_an_english_word_does_not_match() {
+        List<Finding> standing = engine.evaluate(request(300000, "Standing 2구역", 1, null, null, null), EVENT);
+        List<Finding> ambiguous = engine.evaluate(request(300000, "R석 S구역", 1, null, null, null), EVENT);
+
+        assertThat(typesOf(standing)).containsExactly(FindingType.PRICE_NOT_COMPARABLE);
+        assertThat(typesOf(ambiguous)).containsExactly(FindingType.PRICE_NOT_COMPARABLE);
     }
 
     @Test
