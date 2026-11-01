@@ -17,3 +17,6 @@
 - 4단계 AI 추출(같은 날 저녁, 팀원 결정 "AI 부품 교체 가능 + 1차 Gemini 무료 티어"): ADR 5 추가, `POST /api/extract`. 순서 = 입력 검증(글 5,000자·이미지 바이트로 PNG/JPG·5MB) → 분당 한도(접속별 10, 전체 14) → 공연 확인 → 연락처 마스킹 `[삭제]` → `Extractor`(Gemini REST, JSON 스키마 고정, `<listing>` 태그로 자료 취급, 20초) → 실패·시간 초과·형식 불일치는 200 + `fallback`. 공급자는 `ExtractorConfig`가 `AI_PROVIDER`로 고름(claude 는 자리만, 미구현). 테스트 61개.
 - 알게 된 것: 이 환경의 Bash 도구는 역슬래시 두 개를 하나로 줄인다(정규식·`
 `이 깨짐). 역슬래시가 있는 파일은 Write 도구로 써야 한다.
+- 4단계 실제 키 확인(2026-11-01 저녁): 모델 코드는 `gemini-3.5-flash-lite`(AI Studio 표시 이름이 아니라 코드를 `.env`의 `AI_MODEL`에 적어야 함). 처음엔 4회 중 1회꼴로 `fallback`이 났는데, 원인은 모델이 `evidence.seat`(좌석 근거) 칸에 판매글 전체를 반복해 쓰다 출력 한도에 걸리는 것이었다(생각 토큰 아님, 직접 호출로 확인). 좌석 근거 칸을 스키마에서 빼고(좌석 값 자체가 근거) 근거는 20자 이내로 지시, 한도를 넘으면 1회 재시도, 출력 한도 1024로 조정 → 가상 글 3건×2회 + 가상 캡처 2회 = 8/8 성공, 값 전부 정확, 응답 어디에도 연락처 없음. 남은 품질 이슈: `evidence.quantity`에 문장 뒷부분이 길게 딸려 올 때가 있다(120자에서 자름, 화면에는 작은 글씨라 영향 적음).
+- 연기 테스트 `GeminiLiveSmokeTest`: `GEMINI_API_KEY`·`AI_MODEL` 환경 변수가 있을 때만 실제 API를 한 번 부른다(없으면 자동 건너뜀). 실행: `GEMINI_API_KEY=... AI_MODEL=gemini-3.5-flash-lite ./mvnw test -Dtest=GeminiLiveSmokeTest`.
+- 다음: 5단계 화면(⓪①②③⑤). 4단계 fallback 경로(키 제거)는 단위 테스트와 `AI_PROVIDER=none` 설정으로 보장되며, 실서버에서는 서버 시작 로그에 "extraction will always fall back"이 찍히는지로 확인한다.

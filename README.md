@@ -80,7 +80,7 @@ curl.exe -s -F "eventId=1" -F "text=VIP석 A구역 2장 양도, 장당 25만, �
 cd server; .\mvnw.cmd test
 ```
 
-테스트는 메모리 DB(H2, MySQL 모드)로 돌아가므로 로컬 MySQL이 없어도 된다. 수용 기준(정상 양도 글 2건 → 확인사항 0건, 시연 글 → 정확히 3건, 기준값 변경 시 결과 변화, 같은 입력 → 같은 결과, 금지 단어 없음)이 `RuleEngineTest`·`ForbiddenWordsTest`에 자동 테스트로 들어 있다.
+테스트는 메모리 DB(H2, MySQL 모드)로 돌아가므로 로컬 MySQL이 없어도 된다. 실제 Gemini를 한 번 불러 보는 연기 테스트는 키가 환경 변수에 있을 때만 돈다: `GEMINI_API_KEY=... AI_MODEL=gemini-3.5-flash-lite ./mvnw test -Dtest=GeminiLiveSmokeTest`. 수용 기준(정상 양도 글 2건 → 확인사항 0건, 시연 글 → 정확히 3건, 기준값 변경 시 결과 변화, 같은 입력 → 같은 결과, 금지 단어 없음)이 `RuleEngineTest`·`ForbiddenWordsTest`에 자동 테스트로 들어 있다.
 
 ## 폴더
 

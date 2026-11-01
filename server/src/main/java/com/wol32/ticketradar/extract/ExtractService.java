@@ -140,7 +140,9 @@ public class ExtractService {
             return Optional.empty();
         } catch (Exception e) {
             Throwable cause = e.getCause() == null ? e : e.getCause();
-            log.warn("AI extraction fell back: {}", cause.getClass().getSimpleName());
+            // 우리가 직접 만든 IllegalStateException 의 문구(예: MAX_TOKENS)만 덧붙인다. 다른 예외 메시지는 원문·키가 섞일 수 있어 남기지 않는다
+            String reason = cause instanceof IllegalStateException ? " (" + cause.getMessage() + ")" : "";
+            log.warn("AI extraction fell back: {}{}", cause.getClass().getSimpleName(), reason);
             return Optional.empty();
         } finally {
             future.cancel(true); // 끝났으면 아무 일 없고, 아직 돌고 있으면 멈춘다

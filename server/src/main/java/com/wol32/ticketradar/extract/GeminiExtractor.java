@@ -26,7 +26,9 @@ public class GeminiExtractor implements Extractor {
 
     static final String BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models/";
     static final String UNKNOWN = "UNKNOWN";
-    static final int MAX_OUTPUT_TOKENS = 512;
+    static final int MAX_QUOTE_LENGTH = 120;
+    static final int MAX_OUTPUT_TOKENS = 1024; // 정상 답은 200 토큰 안팎. 모델이 구절을 반복하며 폭주하면 빨리 끊기게
+    static final String TRUNCATED = "MAX_TOKENS";
 
     private final RestClient restClient;
     private final AiProperties properties;
@@ -39,7 +41,20 @@ public class GeminiExtractor implements Extractor {
 
     @Override
     public Extraction extract(ExtractionInput input) throws Exception {
-        String body = restClient.post()
+        try {
+            return parse(callRaw(input));
+        } catch (IllegalStateException e) {
+            if (e.getMessage() == null || !e.getMessage().contains(TRUNCATED)) {
+                throw e;
+            }
+            // 모델이 가끔 근거 구절을 반복하다 한도에 걸린다(관찰: 4회 중 1회). 같은 요청을 한 번만 다시 보낸다.
+            return parse(callRaw(input));
+        }
+    }
+
+    /** 원본 응답 JSON. 연기 테스트가 실패 원인을 볼 때도 쓴다. */
+    String callRaw(ExtractionInput input) {
+        return restClient.post()
                 // "model:generateContent" 만 주면 ':' 때문에 스킴으로 오해받으므로 전체 주소를 준다
                 .uri(BASE_URL + properties.modelName() + ":generateContent")
                 .header("x-goog-api-key", properties.geminiApiKey())
@@ -47,7 +62,6 @@ public class GeminiExtractor implements Extractor {
                 .body(requestBody(input))
                 .retrieve()
                 .body(String.class);
-        return parse(body);
     }
 
     // --- 요청 ---
@@ -74,7 +88,9 @@ public class GeminiExtractor implements Extractor {
         List<String> deliveryCodes = Stream.concat(
                 Arrays.stream(DeliveryMethod.values()).map(Enum::name), Stream.of(UNKNOWN)).toList();
         Map<String, Object> evidenceProps = new LinkedHashMap<>();
-        for (String field : List.of("pricePerTicket", "seat", "quantity", "deliveryMethod", "prepaymentRequired")) {
+        // seat 는 근거 칸을 두지 않는다: 좌석은 글에 적힌 대로 베끼는 값이라 그 자체가 근거이고,
+        // 모델이 이 칸에서 글 전체를 반복하다 출력 한도에 걸리는 일이 잦았다 (2026-11-01 관찰)
+        for (String field : List.of("pricePerTicket", "quantity", "deliveryMethod", "prepaymentRequired")) {
             evidenceProps.put(field, nullable("STRING"));
         }
         Map<String, Object> props = new LinkedHashMap<>();
@@ -94,17 +110,26 @@ public class GeminiExtractor implements Extractor {
     // --- 응답 ---
 
     /** Gemini 응답 JSON 안의 모델 답변(JSON 문자열)을 꺼내 Extraction 으로 바꾼다. 형식이 다르면 예외. */
-    private Extraction parse(String body) {
+    Extraction parse(String body) {
         JsonNode root = json.readTree(body);
-        JsonNode text = root.path("candidates").path(0).path("content").path("parts").path(0).path("text");
+        JsonNode candidate = root.path("candidates").path(0);
+        String finishReason = candidate.path("finishReason").asString();
+        if (!finishReason.isEmpty() && !"STOP".equals(finishReason)) {
+            throw new IllegalStateException("Gemini did not finish normally: " + finishReason);
+        }
+        if (!root.path("promptFeedback").path("blockReason").isMissingNode()) {
+            throw new IllegalStateException("Gemini blocked the prompt");
+        }
+        JsonNode text = candidate.path("content").path("parts").path(0).path("text");
         if (text.isMissingNode() || text.asString().isBlank()) {
             throw new IllegalStateException("Gemini answer has no text part");
         }
         Answer answer = json.readValue(text.asString(), Answer.class);
-        Answer.Quotes q = answer.evidence() == null ? new Answer.Quotes(null, null, null, null, null) : answer.evidence();
-        return new Extraction(answer.pricePerTicket(), blankToNull(answer.seat()), answer.quantity(),
+        Answer.Quotes q = answer.evidence() == null ? new Answer.Quotes(null, null, null, null) : answer.evidence();
+        String seat = blankToNull(answer.seat());
+        return new Extraction(answer.pricePerTicket(), seat, answer.quantity(),
                 deliveryMethod(answer.deliveryMethod()), answer.prepaymentRequired(),
-                new Evidence(blankToNull(q.pricePerTicket()), blankToNull(q.seat()), blankToNull(q.quantity()),
+                new Evidence(blankToNull(q.pricePerTicket()), seat, blankToNull(q.quantity()),
                         blankToNull(q.deliveryMethod()), blankToNull(q.prepaymentRequired())));
     }
 
@@ -115,15 +140,22 @@ public class GeminiExtractor implements Extractor {
         return Arrays.stream(DeliveryMethod.values()).filter(m -> m.name().equals(code)).findFirst().orElse(null);
     }
 
+    /** 빈 값은 null, 모델이 베껴 넣은 태그 조각은 제거, 근거 구절은 짧게 자른다 (카드에 한 줄로 보여 줄 값). */
     private static String blankToNull(String s) {
-        return s == null || s.isBlank() ? null : s.strip();
+        if (s == null) {
+            return null;
+        }
+        String cleaned = s.replace("</listing>", "").replace("<listing>", "").strip();
+        if (cleaned.isBlank()) {
+            return null;
+        }
+        return cleaned.length() > MAX_QUOTE_LENGTH ? cleaned.substring(0, MAX_QUOTE_LENGTH) + "…" : cleaned;
     }
 
     /** 모델이 돌려주는 JSON 모양. 모르는 칸은 무시한다. */
     record Answer(Integer pricePerTicket, String seat, Integer quantity, String deliveryMethod,
             Boolean prepaymentRequired, Quotes evidence) {
-        record Quotes(String pricePerTicket, String seat, String quantity, String deliveryMethod,
-                String prepaymentRequired) {
+        record Quotes(String pricePerTicket, String quantity, String deliveryMethod, String prepaymentRequired) {
         }
     }
 }

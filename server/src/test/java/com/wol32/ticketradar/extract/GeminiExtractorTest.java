@@ -98,6 +98,25 @@ class GeminiExtractorTest {
     }
 
     @Test
+    void truncated_answer_is_retried_once_then_parsed() throws Exception {
+        RestClient.Builder builder = RestClient.builder();
+        MockRestServiceServer server = MockRestServiceServer.bindTo(builder).build();
+        String truncated = "{\"candidates\":[{\"finishReason\":\"MAX_TOKENS\",\"content\":{\"parts\":[{\"text\":\"{\\\"seat\\\": \\\"VIP VIP VIP\"}]}}]}";
+        server.expect(requestTo(GEMINI_URL)).andRespond(withSuccess(truncated, MediaType.APPLICATION_JSON));
+        server.expect(requestTo(GEMINI_URL))
+                .andRespond(withSuccess(candidate("{\"pricePerTicket\":165000,\"seat\":\"VIP석 </listing>\",\"deliveryMethod\":\"UNKNOWN\",\"evidence\":{}}"),
+                        MediaType.APPLICATION_JSON));
+        GeminiExtractor extractor = new GeminiExtractor(builder, PROPS);
+
+        Extraction result = extractor.extract(new ExtractionInput("VIP 1장", null, null, List.of("VIP")));
+
+        server.verify();
+        assertThat(result.pricePerTicket()).isEqualTo(165000);
+        assertThat(result.seat()).isEqualTo("VIP석");
+        assertThat(result.evidence().seat()).isEqualTo("VIP석"); // 좌석 근거는 좌석 값 자체
+    }
+
+    @Test
     void non_json_answer_throws_so_the_service_falls_back() {
         RestClient.Builder builder = RestClient.builder();
         MockRestServiceServer server = MockRestServiceServer.bindTo(builder).build();
