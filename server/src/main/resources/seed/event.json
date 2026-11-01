@@ -1,0 +1,18 @@
+{
+  "_comment": "가상 공연 데이터. 실제 대상 공연이 정해지면 이 파일만 바꾼다. 모든 값과 URL은 가상이다.",
+  "name": "2026 ○○ 콘서트 (가상)",
+  "startsAt": "2026-12-20T18:00:00",
+  "venue": "○○ 아레나 (가상)",
+  "category": "CONCERT",
+  "officialUrl": "https://example.com/fictional-event/notice",
+  "priceTiers": [
+    { "grade": "VIP", "price": 165000, "sourceUrl": "https://example.com/fictional-event/notice#price", "checkedOn": "2026-10-28" },
+    { "grade": "R",   "price": 143000, "sourceUrl": "https://example.com/fictional-event/notice#price", "checkedOn": "2026-10-28" },
+    { "grade": "S",   "price": 121000, "sourceUrl": "https://example.com/fictional-event/notice#price", "checkedOn": "2026-10-28" }
+  ],
+  "rules": [
+    { "type": "ON_SITE_PICKUP_REQUIRED",   "text": "티켓은 공연 당일 현장 매표소에서 예매자 본인이 직접 수령합니다.", "sourceUrl": "https://example.com/fictional-event/notice#rules", "checkedOn": "2026-10-28" },
+    { "type": "CAPTURE_ENTRY_NOT_ALLOWED", "text": "티켓 캡처 화면이나 사진으로는 입장할 수 없습니다.",               "sourceUrl": "https://example.com/fictional-event/notice#rules", "checkedOn": "2026-10-28" },
+    { "type": "IDENTITY_CHECK_REQUIRED",   "text": "입장 시 예매자 본인 확인(신분증 대조)을 진행합니다.",             "sourceUrl": "https://example.com/fictional-event/notice#rules", "checkedOn": "2026-10-28" }
+  ]
+}
