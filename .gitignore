@@ -1,1 +1,8 @@
+# secrets
+.env
+# build / deps
+node_modules/
+target/
+dist/
+# local reference images (not for the repo)
 docs/reference/
