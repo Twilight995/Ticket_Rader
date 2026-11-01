@@ -13,3 +13,4 @@
 - 브랜치: `feat/stage0-env` → `feat/stage1-api-contract` → `feat/stage2-event-admin-api` → `feat/stage3-rule-engine` 순서로 쌓여 있다(각 단계 커밋 1개). 리뷰 후 순서대로 `master`에 합치면 된다.
 - **다음 세션**: ① 팀원이 MySQL80 켜고 `.env` 채워 `scripts/start.ps1`로 실제 MySQL 연결 확인(0단계 완료 기준 마무리, 9주차 점검 ①③⑤를 실제 요청으로 한 번 더) ② 4단계 AI 추출(`POST /api/extract`, Claude Java SDK, 키 필요) ③ 5단계 화면.
 - 이 세션에서 알게 된 것: Spring Boot 4에서는 테스트 애너테이션 패키지가 바뀌었다(`org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest`, `AutoConfigureMockMvc`), Jackson이 3.x(`tools.jackson.*`)다. Initializr 버전 문자열 `4.1.2.RELEASE`는 Maven 중앙에 없어 `4.1.2`로 고쳐야 한다.
+- 2026-11-01 저녁, 실제 MySQL 연결 확인 완료: 팀원이 MySQL80을 켜고 `.env`를 채운 뒤 `scripts/start.ps1`로 서버 기동. 떠 있는 서버에 직접 요청해 health / 공연 조회(seed가 MySQL에 들어감) / 비밀번호 없는 관리자 요청 401 / 음수 가격 400 / 없는 주소 404 / 시연 글 3건 / 정상 글 0건 모두 확인 → 0단계 완료 기준과 9주차 점검 ①③⑤ 실서버 통과. (주의: Git Bash에서 curl로 한글을 보내면 인코딩이 깨져 400이 난다. 브라우저·React 요청은 UTF-8이라 문제없음.)
