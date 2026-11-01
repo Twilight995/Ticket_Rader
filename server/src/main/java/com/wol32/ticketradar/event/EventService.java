@@ -30,6 +30,11 @@ public class EventService {
         return eventRepository.findFirstByOrderByIdAsc().map(EventResponse::from);
     }
 
+    @Transactional(readOnly = true)
+    public Optional<EventResponse> findEvent(long id) {
+        return eventRepository.findById(id).map(EventResponse::from);
+    }
+
     /** 있으면 모든 칸과 정가표·규정을 교체하고, 없으면 새로 만든다. 한 트랜잭션. */
     @Transactional
     public EventResponse replaceEvent(EventUpsertRequest request) {

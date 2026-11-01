@@ -47,13 +47,36 @@ Failed to initialize JPA EntityManagerFactory: ... Unable to determine Dialect w
 
 고치는 법: 관리자 PowerShell에서 `net start MySQL80` (또는 서비스 앱에서 MySQL80 시작) → 다시 `scripts\start.ps1`. 비밀번호가 틀리면 같은 자리에 `Access denied for user 'root'@'localhost'`가 나온다 → `.env`의 `DB_PASSWORD` 확인.
 
+## 지금까지 되는 것 (2026-11-01)
+
+| API | 상태 |
+|---|---|
+| `GET /api/health` | 동작 |
+| `GET /api/event` 공연 조회 (가상 공연 1건이 서버 시작 시 자동 투입) | 동작 |
+| `GET` / `PUT /api/admin/event` 관리자 조회·저장 (HTTP Basic, 아이디 `admin`, 비밀번호 `.env`의 `ADMIN_PASSWORD`) | 동작 |
+| `POST /api/check` 비교(확인사항 계산, 규칙 엔진) | 동작 |
+| `POST /api/extract` AI 추출 | 4단계 (다음 세션) |
+| 화면 ⓪①②③⑤ | 5단계 |
+
+직접 눌러 보기 (서버가 떠 있을 때, PowerShell):
+
+```powershell
+Invoke-RestMethod http://localhost:8080/api/event | ConvertTo-Json -Depth 5
+```
+
+```powershell
+Invoke-RestMethod -Method Post -ContentType "application/json; charset=utf-8" -Uri http://localhost:8080/api/check -Body '{"eventId":1,"pricePerTicket":250000,"seat":"VIP석 A구역","quantity":2,"deliveryMethod":"CAPTURE_QR","prepaymentRequired":true}' | ConvertTo-Json -Depth 5
+```
+
+규칙 엔진 기준값(정가 배율 1.5, 수량 4장)은 `server/src/main/resources/application.properties`의 `ticket-radar.rules.*`에 있다. 계약(요청·응답 모양)은 `docs/api-contract.md`.
+
 ## 테스트
 
 ```powershell
 cd server; .\mvnw.cmd test
 ```
 
-테스트는 메모리 DB(H2, MySQL 모드)로 돌아가므로 로컬 MySQL이 없어도 된다.
+테스트는 메모리 DB(H2, MySQL 모드)로 돌아가므로 로컬 MySQL이 없어도 된다. 수용 기준(정상 양도 글 2건 → 확인사항 0건, 시연 글 → 정확히 3건, 기준값 변경 시 결과 변화, 같은 입력 → 같은 결과, 금지 단어 없음)이 `RuleEngineTest`·`ForbiddenWordsTest`에 자동 테스트로 들어 있다.
 
 ## 폴더
 
