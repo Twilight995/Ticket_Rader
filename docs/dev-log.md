@@ -14,3 +14,6 @@
 - **다음 세션**: ① 팀원이 MySQL80 켜고 `.env` 채워 `scripts/start.ps1`로 실제 MySQL 연결 확인(0단계 완료 기준 마무리, 9주차 점검 ①③⑤를 실제 요청으로 한 번 더) ② 4단계 AI 추출(`POST /api/extract`, Claude Java SDK, 키 필요) ③ 5단계 화면.
 - 이 세션에서 알게 된 것: Spring Boot 4에서는 테스트 애너테이션 패키지가 바뀌었다(`org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest`, `AutoConfigureMockMvc`), Jackson이 3.x(`tools.jackson.*`)다. Initializr 버전 문자열 `4.1.2.RELEASE`는 Maven 중앙에 없어 `4.1.2`로 고쳐야 한다.
 - 2026-11-01 저녁, 실제 MySQL 연결 확인 완료: 팀원이 MySQL80을 켜고 `.env`를 채운 뒤 `scripts/start.ps1`로 서버 기동. 떠 있는 서버에 직접 요청해 health / 공연 조회(seed가 MySQL에 들어감) / 비밀번호 없는 관리자 요청 401 / 음수 가격 400 / 없는 주소 404 / 시연 글 3건 / 정상 글 0건 모두 확인 → 0단계 완료 기준과 9주차 점검 ①③⑤ 실서버 통과. (주의: Git Bash에서 curl로 한글을 보내면 인코딩이 깨져 400이 난다. 브라우저·React 요청은 UTF-8이라 문제없음.)
+- 4단계 AI 추출(같은 날 저녁, 팀원 결정 "AI 부품 교체 가능 + 1차 Gemini 무료 티어"): ADR 5 추가, `POST /api/extract`. 순서 = 입력 검증(글 5,000자·이미지 바이트로 PNG/JPG·5MB) → 분당 한도(접속별 10, 전체 14) → 공연 확인 → 연락처 마스킹 `[삭제]` → `Extractor`(Gemini REST, JSON 스키마 고정, `<listing>` 태그로 자료 취급, 20초) → 실패·시간 초과·형식 불일치는 200 + `fallback`. 공급자는 `ExtractorConfig`가 `AI_PROVIDER`로 고름(claude 는 자리만, 미구현). 테스트 61개.
+- 알게 된 것: 이 환경의 Bash 도구는 역슬래시 두 개를 하나로 줄인다(정규식·`
+`이 깨짐). 역슬래시가 있는 파일은 Write 도구로 써야 한다.

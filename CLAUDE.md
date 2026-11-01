@@ -20,7 +20,7 @@
 - 서버: **Spring Boot (Java 17+)**, 층은 Controller / Service / Repository. 빌드된 화면 파일도 같은 서버가 제공.
 - 화면: **React + Vite + TypeScript**, 반응형 한 벌(모바일 390 기준, PC 1024).
 - DB: **MySQL(팀 노트북 로컬)**. JPA와 표준 SQL만. MySQL 전용 문법 금지(나중에 Postgres로 옮길 수 있게).
-- AI: **Claude API, 공식 Java SDK, 서버에서만 호출.** 키는 환경 변수. 모델 ID도 환경 변수로 교체 가능하게.
+- AI: **서버에서만 호출.** 추출 부품은 `Extractor` 자리 하나로 두고 공급자를 환경 변수(`AI_PROVIDER`·`AI_MODEL`·키)로 고른다(ADR 5). 1차는 Gemini 무료 티어(HTTP 호출), Claude(공식 Java SDK)로 교체 가능. 키가 없으면 항상 `fallback`. 무료 티어 한도 때문에 접속별 + 전체 분당 호출 수를 서버가 제한한다.
 - 배포: 팀 노트북에서 명령 하나로 실행. 인터넷이 끊겨도 AI만 빠지고 나머지는 동작해야 한다.
 - 폴더: `server/`(Spring Boot), `client/`(React), `docs/`(설계 문서). 공연 데이터 seed는 `server/src/main/resources/seed/event.json`.
 

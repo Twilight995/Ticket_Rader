@@ -27,7 +27,7 @@ public record CheckRequest(
             @Size(max = 300, message = QUOTE_TOO_LONG) String deliveryMethod,
             @Size(max = 300, message = QUOTE_TOO_LONG) String prepaymentRequired) {
 
-        static final Evidence NONE = new Evidence(null, null, null, null, null);
+        public static final Evidence NONE = new Evidence(null, null, null, null, null);
     }
 
     Evidence evidenceOrNone() {

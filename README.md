@@ -33,7 +33,7 @@ cd client; npm install; npm run dev
 | `DB_HOST` `DB_PORT` `DB_NAME` `DB_USER` `DB_PASSWORD` | 로컬 MySQL 접속 정보. 기본 `127.0.0.1:3306`, DB 이름 `ticket_radar` | 0단계 |
 | `SERVER_PORT` | 서버 포트. 기본 8080 | 0단계 |
 | `ADMIN_PASSWORD` | 관리자 화면(⑤) HTTP Basic 비밀번호 | 2단계 |
-| `ANTHROPIC_API_KEY` `CLAUDE_MODEL` | Claude API 키와 모델 ID. 비워 두면 AI 추출 없이 `fallback`으로 동작 | 4단계 |
+| `AI_PROVIDER` `AI_MODEL` `GEMINI_API_KEY` (`ANTHROPIC_API_KEY`) | AI 추출 공급자(`none`/`gemini`/`claude`), 모델 ID, 키. 키가 비어 있으면 AI 없이 `fallback`으로 동작(ADR 5). 무료 티어 한도 때문에 서버가 접속별 분당 10회·전체 분당 14회로 제한 | 4단계 |
 
 ## MySQL이 꺼져 있으면
 
@@ -55,7 +55,7 @@ Failed to initialize JPA EntityManagerFactory: ... Unable to determine Dialect w
 | `GET /api/event` 공연 조회 (가상 공연 1건이 서버 시작 시 자동 투입) | 동작 |
 | `GET` / `PUT /api/admin/event` 관리자 조회·저장 (HTTP Basic, 아이디 `admin`, 비밀번호 `.env`의 `ADMIN_PASSWORD`) | 동작 |
 | `POST /api/check` 비교(확인사항 계산, 규칙 엔진) | 동작 |
-| `POST /api/extract` AI 추출 | 4단계 (다음 세션) |
+| `POST /api/extract` AI 추출 (연락처 마스킹 → AI, 실패하면 `fallback`) | 동작 (공급자는 `.env`의 `AI_PROVIDER`, 1차 Gemini 무료 티어) |
 | 화면 ⓪①②③⑤ | 5단계 |
 
 직접 눌러 보기 (서버가 떠 있을 때, PowerShell):
@@ -66,6 +66,10 @@ Invoke-RestMethod http://localhost:8080/api/event | ConvertTo-Json -Depth 5
 
 ```powershell
 Invoke-RestMethod -Method Post -ContentType "application/json; charset=utf-8" -Uri http://localhost:8080/api/check -Body '{"eventId":1,"pricePerTicket":250000,"seat":"VIP석 A구역","quantity":2,"deliveryMethod":"CAPTURE_QR","prepaymentRequired":true}' | ConvertTo-Json -Depth 5
+```
+
+```powershell
+curl.exe -s -F "eventId=1" -F "text=VIP석 A구역 2장 양도, 장당 25만, 선입금 후 QR 캡처 전송" http://localhost:8080/api/extract
 ```
 
 규칙 엔진 기준값(정가 배율 1.5, 수량 4장)은 `server/src/main/resources/application.properties`의 `ticket-radar.rules.*`에 있다. 계약(요청·응답 모양)은 `docs/api-contract.md`.

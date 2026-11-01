@@ -16,6 +16,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.DatabindException;
@@ -52,6 +53,11 @@ public class ApiExceptionHandler {
         Map<String, String> fields = jacksonFieldErrors(e);
         ApiError error = fields.isEmpty() ? ApiError.of(UNREADABLE_MESSAGE) : new ApiError(INVALID_MESSAGE, fields);
         return badRequest(error);
+    }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ResponseEntity<ApiResponse<Void>> handleTooLargeUpload(MaxUploadSizeExceededException e) {
+        return badRequest(new ApiError(INVALID_MESSAGE, Map.of("image", "이미지는 5MB 이하여야 해요")));
     }
 
     @ExceptionHandler(Exception.class)
