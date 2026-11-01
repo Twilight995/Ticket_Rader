@@ -6661,6 +6661,97 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "frame",
+              "id": "MKCoh",
+              "name": "Row:로고 후보",
+              "width": "fill_container",
+              "fill": "$tr-bg",
+              "gap": 24,
+              "padding": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mkwfi",
+                  "name": "RowLabel",
+                  "fill": "$tr-text-sub",
+                  "textGrowth": "fixed-width",
+                  "width": 160,
+                  "content": "로고 후보 (SVG 생성)",
+                  "fontFamily": "$tr-font",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "s9Sxv",
+                  "name": "Items",
+                  "gap": 32,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ZEG54",
+                      "name": "DS/Logo",
+                      "reusable": true,
+                      "clip": true,
+                      "width": 120,
+                      "height": 120,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "path",
+                          "id": "aCu8a",
+                          "x": 41.85,
+                          "y": 32.55,
+                          "geometry": "M0 0c22.815 0 41.04 19.10999 41.04 43.215l0 4.005",
+                          "width": 41.04,
+                          "height": 47.22,
+                          "stroke": "$tr-pink",
+                          "strokeWidth": 5.198475,
+                          "strokeLinecap": "round"
+                        },
+                        {
+                          "type": "path",
+                          "id": "HU2P6",
+                          "x": 41.85,
+                          "y": 44.31,
+                          "geometry": "M0 0c17.025 0 30.24001 13.905 30.24001 31.635l-0.00001 3.825",
+                          "width": 30.24,
+                          "height": 35.46,
+                          "stroke": "$tr-pink",
+                          "strokeWidth": 5.198475,
+                          "strokeLinecap": "round"
+                        },
+                        {
+                          "type": "path",
+                          "id": "XrmGc",
+                          "x": 41.85,
+                          "y": 56.13,
+                          "geometry": "M0 0c10.77 0 19.275 8.79 19.275 19.635l0 4.00501",
+                          "width": 19.275,
+                          "height": 23.64,
+                          "stroke": "$tr-pink",
+                          "strokeWidth": 5.198475,
+                          "strokeLinecap": "round"
+                        },
+                        {
+                          "type": "path",
+                          "id": "m1Ztpo",
+                          "x": 34.665,
+                          "y": 76.62,
+                          "geometry": "M16.14 0l-14.625 0c-0.855 0-1.515 0.66-1.515 1.45499l0 2.37001c1.29 0.24 2.205 1.245 2.205 2.46 0 1.29-0.915 2.355-2.205 2.61l0 2.33999c0 0.855 0.69 1.53001 1.515 1.53001l14.625 0c0.84 0 1.5-0.66 1.5-1.53001l0-2.33999c-1.23-0.285-2.13-1.32-2.13-2.61 0-1.245 0.89999-2.265 2.13-2.46l0-2.37001c0-0.795-0.675-1.45499-1.5-1.45499z",
+                          "fill": "$tr-pink",
+                          "width": 17.64,
+                          "height": 12.765
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -17185,6 +17276,1773 @@
                               ]
                             }
                           ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "m4S0D",
+      "x": 900,
+      "y": 17900,
+      "name": "⓪ 시작 화면 · 홈 — 상세 디자인 · 다크 모드",
+      "layout": "vertical",
+      "gap": 12,
+      "children": [
+        {
+          "type": "text",
+          "id": "MAJ3G",
+          "name": "GroupTitle",
+          "fill": "$tr-text-sub",
+          "content": "화면 ⓪ 시작 화면(스플래시) · 홈 — 다크 모드 · 390px · 기획서 범위 밖 추가(2026-11-01, 팀 확인 필요)",
+          "fontFamily": "$tr-font",
+          "fontSize": 18,
+          "fontWeight": "bold"
+        },
+        {
+          "type": "frame",
+          "id": "crKxj",
+          "name": "Screens",
+          "gap": 48,
+          "children": [
+            {
+              "type": "frame",
+              "id": "w8mxpT",
+              "name": "Col:⓪ 스플래시",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "zqnbi",
+                  "name": "Caption",
+                  "fill": "$tr-text-sub",
+                  "content": "⓪ 스플래시 (1~2초 뒤 홈으로)",
+                  "fontFamily": "$tr-font",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "J1hsz",
+                  "name": "Screen",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": [
+                    "$tr-bg",
+                    {
+                      "type": "shader",
+                      "enabled": true,
+                      "url": "screen-glow.glsl",
+                      "uniforms": {
+                        "u_seed": 3.3,
+                        "u_warm": "$tr-glow-warm",
+                        "u_plum": "$tr-glow-plum",
+                        "u_strength": 0.3
+                      }
+                    }
+                  ],
+                  "stroke": "#D0D0D0",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "id": "C3g6b",
+                      "type": "ref",
+                      "ref": "wltG5",
+                      "name": "Status"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "poEXA",
+                      "name": "Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 20,
+                      "padding": [
+                        0,
+                        32,
+                        40,
+                        32
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "h1cKCL",
+                          "name": "GrowTop",
+                          "width": "fill_container",
+                          "height": "fill_container"
+                        },
+                        {
+                          "id": "EqTYj",
+                          "type": "ref",
+                          "ref": "ZEG54",
+                          "name": "Logo",
+                          "width": 112,
+                          "height": 112
+                        },
+                        {
+                          "type": "text",
+                          "id": "pFk1b",
+                          "name": "AppName",
+                          "fill": "$tr-text",
+                          "content": "티켓레이더",
+                          "fontFamily": "$tr-font-display",
+                          "fontSize": 32,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "qR163",
+                          "name": "Tagline",
+                          "fill": "$tr-text-sub",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "판매글을 공식 안내와 비교해 드려요",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "$tr-font",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "vaVXC",
+                          "name": "GrowBottom",
+                          "width": "fill_container",
+                          "height": "fill_container"
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "MEhsY",
+                          "name": "Spinner",
+                          "innerRadius": 0.72,
+                          "startAngle": 90,
+                          "sweepAngle": 270,
+                          "fill": "$tr-pink",
+                          "width": 22,
+                          "height": 22
+                        },
+                        {
+                          "type": "text",
+                          "id": "EeRuB",
+                          "name": "SplashNote",
+                          "fill": "$tr-text-sub",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "이 서비스의 결과는 참고용이며 최종 판단은 사용자가 합니다.",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "$tr-font",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "yPiBL",
+              "name": "Col:⓪ 홈 정상 상태 (공연 1건 등록됨)",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "E96wa",
+                  "name": "Caption",
+                  "fill": "$tr-text-sub",
+                  "content": "⓪ 홈 정상 상태 (공연 1건 등록됨)",
+                  "fontFamily": "$tr-font",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "y77g0",
+                  "name": "Screen",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": [
+                    "$tr-bg",
+                    {
+                      "type": "shader",
+                      "enabled": true,
+                      "url": "screen-glow.glsl",
+                      "uniforms": {
+                        "u_seed": 2.1,
+                        "u_warm": "$tr-glow-warm",
+                        "u_plum": "$tr-glow-plum",
+                        "u_strength": "$tr-glow-strength"
+                      }
+                    }
+                  ],
+                  "stroke": "#D0D0D0",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "id": "d5jmKm",
+                      "type": "ref",
+                      "ref": "wltG5",
+                      "name": "Status"
+                    },
+                    {
+                      "id": "fAfXo",
+                      "type": "ref",
+                      "ref": "s0Mnwn",
+                      "name": "TopBar",
+                      "descendants": {
+                        "h5KSt": {
+                          "enabled": false
+                        },
+                        "Es0L7": {
+                          "enabled": true
+                        },
+                        "w41CG": {
+                          "content": "티켓레이더"
+                        },
+                        "Z3qMKS": {
+                          "enabled": false
+                        }
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "k0Qv1",
+                      "name": "Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        8,
+                        16,
+                        32,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "id": "l8yN6",
+                          "type": "ref",
+                          "ref": "IhLBu",
+                          "name": "Hero",
+                          "descendants": {
+                            "qUxJ3": {
+                              "content": "티켓 판매글, 결제 전에 공식 안내와 맞춰 보세요"
+                            },
+                            "SRZRs": {
+                              "content": "AI가 가격·좌석·전달 방식을 읽고 공식 정가·규정과 비교해 확인이 필요한 부분을 알려 드려요. 진위·위법 여부는 판단하지 않아요."
+                            }
+                          }
+                        },
+                        {
+                          "type": "frame",
+                          "id": "oPTyl",
+                          "name": "StepsCard",
+                          "width": "fill_container",
+                          "fill": "$tr-card",
+                          "cornerRadius": 20,
+                          "effect": {
+                            "type": "background_blur",
+                            "radius": 24
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "MPxYN",
+                              "name": "StepsTitle",
+                              "fill": "$tr-text",
+                              "content": "이렇게 확인해요",
+                              "fontFamily": "$tr-font",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "UvAwJ",
+                              "name": "Step1",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "cmqL2",
+                                  "name": "Num",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "$tr-glass-2",
+                                  "cornerRadius": "$tr-radius-pill",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "ZzxId",
+                                      "name": "N",
+                                      "fill": "$tr-text",
+                                      "content": "1",
+                                      "fontFamily": "$tr-font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Q01vN",
+                                  "name": "StepText",
+                                  "fill": "$tr-text",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "판매글을 붙여넣거나 캡처를 올려요",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "$tr-font",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "YXmWy",
+                              "name": "Step2",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "sBuFd",
+                                  "name": "Num",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "$tr-glass-2",
+                                  "cornerRadius": "$tr-radius-pill",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "r65ymN",
+                                      "name": "N",
+                                      "fill": "$tr-text",
+                                      "content": "2",
+                                      "fontFamily": "$tr-font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "DQywg",
+                                  "name": "StepText",
+                                  "fill": "$tr-text",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "AI가 읽은 값을 확인하고 고쳐요",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "$tr-font",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "yIojG",
+                              "name": "Step3",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "VXvJF",
+                                  "name": "Num",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "$tr-glass-2",
+                                  "cornerRadius": "$tr-radius-pill",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "T5L61j",
+                                      "name": "N",
+                                      "fill": "$tr-text",
+                                      "content": "3",
+                                      "fontFamily": "$tr-font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "vkSds",
+                                  "name": "StepText",
+                                  "fill": "$tr-text",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "공식 안내와 비교한 결과를 봐요",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "$tr-font",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "VYcCT",
+                          "name": "ShowCard",
+                          "width": "fill_container",
+                          "fill": "$tr-card",
+                          "cornerRadius": 20,
+                          "effect": {
+                            "type": "background_blur",
+                            "radius": 24
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "As80Y",
+                              "name": "ShowLabel",
+                              "fill": "$tr-text-sub",
+                              "content": "지금 확인할 수 있는 공연",
+                              "fontFamily": "$tr-font",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "WZJqS",
+                              "name": "ShowTitle",
+                              "fill": "$tr-text",
+                              "content": "2026 ○○ 콘서트",
+                              "fontFamily": "$tr-font",
+                              "fontSize": 18,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "WkqWt",
+                              "name": "ShowMeta",
+                              "fill": "$tr-text-sub",
+                              "content": "2026-12-20 (토) 18:00 · ○○ 아레나",
+                              "fontFamily": "$tr-font",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "jXJhI",
+                              "name": "ShowFoot",
+                              "children": [
+                                {
+                                  "id": "emLUn",
+                                  "type": "ref",
+                                  "ref": "StIr1",
+                                  "name": "Link:공식 안내 원문 보기",
+                                  "descendants": {
+                                    "xSC7y": {
+                                      "icon": "open_in_new"
+                                    },
+                                    "jWXXX": {
+                                      "content": "공식 안내 원문 보기"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "iP5ek",
+                          "name": "Grow",
+                          "width": "fill_container",
+                          "height": "fill_container"
+                        },
+                        {
+                          "id": "f2VPU",
+                          "type": "ref",
+                          "ref": "Hr4nS",
+                          "name": "Primary",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "shader",
+                            "enabled": true,
+                            "url": "suno-cta.glsl",
+                            "uniforms": {
+                              "u_seed": 2.1,
+                              "u_pink": "$tr-cta-1",
+                              "u_red": "$tr-cta-2",
+                              "u_orange": "$tr-cta-3",
+                              "u_yellow": "$tr-cta-4"
+                            }
+                          },
+                          "descendants": {
+                            "lUReC": {
+                              "icon": "search"
+                            },
+                            "vt0pa": {
+                              "content": "판매글 확인하기"
+                            }
+                          }
+                        },
+                        {
+                          "id": "JpmHr",
+                          "type": "ref",
+                          "ref": "j8oOC8",
+                          "name": "FooterNote"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "EvFiy",
+              "name": "Col:⓪ 홈 빈 상태 (공연 정보 없음)",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "PrWBO",
+                  "name": "Caption",
+                  "fill": "$tr-text-sub",
+                  "content": "⓪ 홈 빈 상태 (공연 정보 없음)",
+                  "fontFamily": "$tr-font",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "hgy6z",
+                  "name": "Screen",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": [
+                    "$tr-bg",
+                    {
+                      "type": "shader",
+                      "enabled": true,
+                      "url": "screen-glow.glsl",
+                      "uniforms": {
+                        "u_seed": 4.4,
+                        "u_warm": "$tr-glow-warm",
+                        "u_plum": "$tr-glow-plum",
+                        "u_strength": "$tr-glow-strength"
+                      }
+                    }
+                  ],
+                  "stroke": "#D0D0D0",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "id": "xfXbu",
+                      "type": "ref",
+                      "ref": "wltG5",
+                      "name": "Status"
+                    },
+                    {
+                      "id": "LiMiJ",
+                      "type": "ref",
+                      "ref": "s0Mnwn",
+                      "name": "TopBar",
+                      "descendants": {
+                        "h5KSt": {
+                          "enabled": false
+                        },
+                        "Es0L7": {
+                          "enabled": true
+                        },
+                        "w41CG": {
+                          "content": "티켓레이더"
+                        },
+                        "Z3qMKS": {
+                          "enabled": false
+                        }
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "beJu7",
+                      "name": "Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        8,
+                        16,
+                        32,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "id": "fhHPM",
+                          "type": "ref",
+                          "ref": "IhLBu",
+                          "name": "Hero",
+                          "descendants": {
+                            "qUxJ3": {
+                              "content": "티켓 판매글, 결제 전에 공식 안내와 맞춰 보세요"
+                            },
+                            "SRZRs": {
+                              "content": "AI가 가격·좌석·전달 방식을 읽고 공식 정가·규정과 비교해 확인이 필요한 부분을 알려 드려요. 진위·위법 여부는 판단하지 않아요."
+                            }
+                          }
+                        },
+                        {
+                          "type": "frame",
+                          "id": "kZnXY",
+                          "name": "StepsCard",
+                          "width": "fill_container",
+                          "fill": "$tr-card",
+                          "cornerRadius": 20,
+                          "effect": {
+                            "type": "background_blur",
+                            "radius": 24
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "npoOV",
+                              "name": "StepsTitle",
+                              "fill": "$tr-text",
+                              "content": "이렇게 확인해요",
+                              "fontFamily": "$tr-font",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "W5rCu",
+                              "name": "Step1",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "JRUDl",
+                                  "name": "Num",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "$tr-glass-2",
+                                  "cornerRadius": "$tr-radius-pill",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "G3XPv",
+                                      "name": "N",
+                                      "fill": "$tr-text",
+                                      "content": "1",
+                                      "fontFamily": "$tr-font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "vLzOx",
+                                  "name": "StepText",
+                                  "fill": "$tr-text",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "판매글을 붙여넣거나 캡처를 올려요",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "$tr-font",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ORy29",
+                              "name": "Step2",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "ZugZz",
+                                  "name": "Num",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "$tr-glass-2",
+                                  "cornerRadius": "$tr-radius-pill",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "Byp1t",
+                                      "name": "N",
+                                      "fill": "$tr-text",
+                                      "content": "2",
+                                      "fontFamily": "$tr-font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "L23SZr",
+                                  "name": "StepText",
+                                  "fill": "$tr-text",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "AI가 읽은 값을 확인하고 고쳐요",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "$tr-font",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "FIdHb",
+                              "name": "Step3",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "NzOMO",
+                                  "name": "Num",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "$tr-glass-2",
+                                  "cornerRadius": "$tr-radius-pill",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "aaFg4",
+                                      "name": "N",
+                                      "fill": "$tr-text",
+                                      "content": "3",
+                                      "fontFamily": "$tr-font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "pS2Eq",
+                                  "name": "StepText",
+                                  "fill": "$tr-text",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "공식 안내와 비교한 결과를 봐요",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "$tr-font",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "go49c",
+                          "name": "ShowCard",
+                          "width": "fill_container",
+                          "fill": "$tr-card",
+                          "cornerRadius": 20,
+                          "effect": {
+                            "type": "background_blur",
+                            "radius": 24
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "zP7gr",
+                              "name": "ShowLabel",
+                              "fill": "$tr-text-sub",
+                              "content": "지금 확인할 수 있는 공연",
+                              "fontFamily": "$tr-font",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "B1FRUc",
+                              "name": "ShowEmpty",
+                              "fill": "$tr-text-sub",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "아직 확인할 수 있는 공연이 없어요. 관리자가 공연 정보를 등록하면 시작할 수 있어요.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "$tr-font",
+                              "fontSize": 16,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "CfvmF",
+                          "name": "Grow",
+                          "width": "fill_container",
+                          "height": "fill_container"
+                        },
+                        {
+                          "id": "Cv0GK",
+                          "type": "ref",
+                          "ref": "i5xHzs",
+                          "name": "Primary",
+                          "width": "fill_container",
+                          "descendants": {
+                            "tmSOw": {
+                              "icon": "search"
+                            },
+                            "qJ7UG": {
+                              "content": "판매글 확인하기"
+                            }
+                          }
+                        },
+                        {
+                          "id": "P61GRb",
+                          "type": "ref",
+                          "ref": "j8oOC8",
+                          "name": "FooterNote"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ZW6mD",
+      "x": 3200,
+      "y": 17900,
+      "name": "⓪ 시작 화면 · 홈 — 상세 디자인 · 라이트 모드",
+      "theme": {
+        "mode": "light"
+      },
+      "layout": "vertical",
+      "gap": 12,
+      "children": [
+        {
+          "type": "text",
+          "id": "e3D94Q",
+          "name": "GroupTitle",
+          "fill": "$tr-text-sub",
+          "content": "화면 ⓪ 시작 화면(스플래시) · 홈 — 라이트 모드 · 390px · 기획서 범위 밖 추가(2026-11-01, 팀 확인 필요)",
+          "fontFamily": "$tr-font",
+          "fontSize": 18,
+          "fontWeight": "bold"
+        },
+        {
+          "type": "frame",
+          "id": "Lczbo",
+          "name": "Screens",
+          "gap": 48,
+          "children": [
+            {
+              "type": "frame",
+              "id": "INFyk",
+              "name": "Col:⓪ 스플래시",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "QQqdN",
+                  "name": "Caption",
+                  "fill": "$tr-text-sub",
+                  "content": "⓪ 스플래시 (1~2초 뒤 홈으로)",
+                  "fontFamily": "$tr-font",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "qr6OH",
+                  "name": "Screen",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": [
+                    "$tr-bg",
+                    {
+                      "type": "shader",
+                      "enabled": true,
+                      "url": "screen-glow.glsl",
+                      "uniforms": {
+                        "u_seed": 3.3,
+                        "u_warm": "$tr-glow-warm",
+                        "u_plum": "$tr-glow-plum",
+                        "u_strength": 0.3
+                      }
+                    }
+                  ],
+                  "stroke": "#D0D0D0",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "id": "jgQ7X",
+                      "type": "ref",
+                      "ref": "wltG5",
+                      "name": "Status"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "qORe5",
+                      "name": "Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 20,
+                      "padding": [
+                        0,
+                        32,
+                        40,
+                        32
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Xx2bJ",
+                          "name": "GrowTop",
+                          "width": "fill_container",
+                          "height": "fill_container"
+                        },
+                        {
+                          "id": "HGXhp",
+                          "type": "ref",
+                          "ref": "ZEG54",
+                          "name": "Logo",
+                          "width": 112,
+                          "height": 112
+                        },
+                        {
+                          "type": "text",
+                          "id": "bcmkw",
+                          "name": "AppName",
+                          "fill": "$tr-text",
+                          "content": "티켓레이더",
+                          "fontFamily": "$tr-font-display",
+                          "fontSize": 32,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "J35pUU",
+                          "name": "Tagline",
+                          "fill": "$tr-text-sub",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "판매글을 공식 안내와 비교해 드려요",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "$tr-font",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "nn5zf",
+                          "name": "GrowBottom",
+                          "width": "fill_container",
+                          "height": "fill_container"
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "MlocO",
+                          "name": "Spinner",
+                          "innerRadius": 0.72,
+                          "startAngle": 90,
+                          "sweepAngle": 270,
+                          "fill": "$tr-pink",
+                          "width": 22,
+                          "height": 22
+                        },
+                        {
+                          "type": "text",
+                          "id": "KLDcx",
+                          "name": "SplashNote",
+                          "fill": "$tr-text-sub",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "이 서비스의 결과는 참고용이며 최종 판단은 사용자가 합니다.",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "$tr-font",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RHiOQ",
+              "name": "Col:⓪ 홈 정상 상태 (공연 1건 등록됨)",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sEUIA",
+                  "name": "Caption",
+                  "fill": "$tr-text-sub",
+                  "content": "⓪ 홈 정상 상태 (공연 1건 등록됨)",
+                  "fontFamily": "$tr-font",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "nUmkk",
+                  "name": "Screen",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": [
+                    "$tr-bg",
+                    {
+                      "type": "shader",
+                      "enabled": true,
+                      "url": "screen-glow.glsl",
+                      "uniforms": {
+                        "u_seed": 2.1,
+                        "u_warm": "$tr-glow-warm",
+                        "u_plum": "$tr-glow-plum",
+                        "u_strength": "$tr-glow-strength"
+                      }
+                    }
+                  ],
+                  "stroke": "#D0D0D0",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "id": "SyRhT",
+                      "type": "ref",
+                      "ref": "wltG5",
+                      "name": "Status"
+                    },
+                    {
+                      "id": "lvivT",
+                      "type": "ref",
+                      "ref": "s0Mnwn",
+                      "name": "TopBar",
+                      "descendants": {
+                        "h5KSt": {
+                          "enabled": false
+                        },
+                        "Es0L7": {
+                          "enabled": true
+                        },
+                        "w41CG": {
+                          "content": "티켓레이더"
+                        },
+                        "Z3qMKS": {
+                          "enabled": false
+                        }
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jOY6r",
+                      "name": "Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        8,
+                        16,
+                        32,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "id": "MwBaq",
+                          "type": "ref",
+                          "ref": "IhLBu",
+                          "name": "Hero",
+                          "descendants": {
+                            "qUxJ3": {
+                              "content": "티켓 판매글, 결제 전에 공식 안내와 맞춰 보세요"
+                            },
+                            "SRZRs": {
+                              "content": "AI가 가격·좌석·전달 방식을 읽고 공식 정가·규정과 비교해 확인이 필요한 부분을 알려 드려요. 진위·위법 여부는 판단하지 않아요."
+                            }
+                          }
+                        },
+                        {
+                          "type": "frame",
+                          "id": "y9vp1l",
+                          "name": "StepsCard",
+                          "width": "fill_container",
+                          "fill": "$tr-card",
+                          "cornerRadius": 20,
+                          "effect": {
+                            "type": "background_blur",
+                            "radius": 24
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "f8Iwc",
+                              "name": "StepsTitle",
+                              "fill": "$tr-text",
+                              "content": "이렇게 확인해요",
+                              "fontFamily": "$tr-font",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "MuT51",
+                              "name": "Step1",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "ac4ZD",
+                                  "name": "Num",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "$tr-glass-2",
+                                  "cornerRadius": "$tr-radius-pill",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "u6g1U",
+                                      "name": "N",
+                                      "fill": "$tr-text",
+                                      "content": "1",
+                                      "fontFamily": "$tr-font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "a9Xfx",
+                                  "name": "StepText",
+                                  "fill": "$tr-text",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "판매글을 붙여넣거나 캡처를 올려요",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "$tr-font",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Vmsw9",
+                              "name": "Step2",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "R13Y6D",
+                                  "name": "Num",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "$tr-glass-2",
+                                  "cornerRadius": "$tr-radius-pill",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "U8YSCx",
+                                      "name": "N",
+                                      "fill": "$tr-text",
+                                      "content": "2",
+                                      "fontFamily": "$tr-font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "q52scj",
+                                  "name": "StepText",
+                                  "fill": "$tr-text",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "AI가 읽은 값을 확인하고 고쳐요",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "$tr-font",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "FCdxn",
+                              "name": "Step3",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "p4UuF",
+                                  "name": "Num",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "$tr-glass-2",
+                                  "cornerRadius": "$tr-radius-pill",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "dIsHW",
+                                      "name": "N",
+                                      "fill": "$tr-text",
+                                      "content": "3",
+                                      "fontFamily": "$tr-font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "aH1ov",
+                                  "name": "StepText",
+                                  "fill": "$tr-text",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "공식 안내와 비교한 결과를 봐요",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "$tr-font",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Jc7Gx",
+                          "name": "ShowCard",
+                          "width": "fill_container",
+                          "fill": "$tr-card",
+                          "cornerRadius": 20,
+                          "effect": {
+                            "type": "background_blur",
+                            "radius": 24
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "wU8VM",
+                              "name": "ShowLabel",
+                              "fill": "$tr-text-sub",
+                              "content": "지금 확인할 수 있는 공연",
+                              "fontFamily": "$tr-font",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "G19qH",
+                              "name": "ShowTitle",
+                              "fill": "$tr-text",
+                              "content": "2026 ○○ 콘서트",
+                              "fontFamily": "$tr-font",
+                              "fontSize": 18,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "rdypr",
+                              "name": "ShowMeta",
+                              "fill": "$tr-text-sub",
+                              "content": "2026-12-20 (토) 18:00 · ○○ 아레나",
+                              "fontFamily": "$tr-font",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "DERwI",
+                              "name": "ShowFoot",
+                              "children": [
+                                {
+                                  "id": "Kfdvb",
+                                  "type": "ref",
+                                  "ref": "StIr1",
+                                  "name": "Link:공식 안내 원문 보기",
+                                  "descendants": {
+                                    "xSC7y": {
+                                      "icon": "open_in_new"
+                                    },
+                                    "jWXXX": {
+                                      "content": "공식 안내 원문 보기"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "M1ODF4",
+                          "name": "Grow",
+                          "width": "fill_container",
+                          "height": "fill_container"
+                        },
+                        {
+                          "id": "NwVYt",
+                          "type": "ref",
+                          "ref": "Hr4nS",
+                          "name": "Primary",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "shader",
+                            "enabled": true,
+                            "url": "suno-cta.glsl",
+                            "uniforms": {
+                              "u_seed": 2.1,
+                              "u_pink": "$tr-cta-1",
+                              "u_red": "$tr-cta-2",
+                              "u_orange": "$tr-cta-3",
+                              "u_yellow": "$tr-cta-4"
+                            }
+                          },
+                          "descendants": {
+                            "lUReC": {
+                              "icon": "search"
+                            },
+                            "vt0pa": {
+                              "content": "판매글 확인하기"
+                            }
+                          }
+                        },
+                        {
+                          "id": "MS2YM",
+                          "type": "ref",
+                          "ref": "j8oOC8",
+                          "name": "FooterNote"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "o85CHV",
+              "name": "Col:⓪ 홈 빈 상태 (공연 정보 없음)",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "M9SSTs",
+                  "name": "Caption",
+                  "fill": "$tr-text-sub",
+                  "content": "⓪ 홈 빈 상태 (공연 정보 없음)",
+                  "fontFamily": "$tr-font",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "sB2va",
+                  "name": "Screen",
+                  "clip": true,
+                  "width": 390,
+                  "height": 844,
+                  "fill": [
+                    "$tr-bg",
+                    {
+                      "type": "shader",
+                      "enabled": true,
+                      "url": "screen-glow.glsl",
+                      "uniforms": {
+                        "u_seed": 4.4,
+                        "u_warm": "$tr-glow-warm",
+                        "u_plum": "$tr-glow-plum",
+                        "u_strength": "$tr-glow-strength"
+                      }
+                    }
+                  ],
+                  "stroke": "#D0D0D0",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "id": "JMVO5",
+                      "type": "ref",
+                      "ref": "wltG5",
+                      "name": "Status"
+                    },
+                    {
+                      "id": "L02UfB",
+                      "type": "ref",
+                      "ref": "s0Mnwn",
+                      "name": "TopBar",
+                      "descendants": {
+                        "h5KSt": {
+                          "enabled": false
+                        },
+                        "Es0L7": {
+                          "enabled": true
+                        },
+                        "w41CG": {
+                          "content": "티켓레이더"
+                        },
+                        "Z3qMKS": {
+                          "enabled": false
+                        }
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dYZXY",
+                      "name": "Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": [
+                        8,
+                        16,
+                        32,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "id": "H1XoyC",
+                          "type": "ref",
+                          "ref": "IhLBu",
+                          "name": "Hero",
+                          "descendants": {
+                            "qUxJ3": {
+                              "content": "티켓 판매글, 결제 전에 공식 안내와 맞춰 보세요"
+                            },
+                            "SRZRs": {
+                              "content": "AI가 가격·좌석·전달 방식을 읽고 공식 정가·규정과 비교해 확인이 필요한 부분을 알려 드려요. 진위·위법 여부는 판단하지 않아요."
+                            }
+                          }
+                        },
+                        {
+                          "type": "frame",
+                          "id": "R34VA",
+                          "name": "StepsCard",
+                          "width": "fill_container",
+                          "fill": "$tr-card",
+                          "cornerRadius": 20,
+                          "effect": {
+                            "type": "background_blur",
+                            "radius": 24
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "RnPrI",
+                              "name": "StepsTitle",
+                              "fill": "$tr-text",
+                              "content": "이렇게 확인해요",
+                              "fontFamily": "$tr-font",
+                              "fontSize": 15,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "EbuEG",
+                              "name": "Step1",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "OQQRq",
+                                  "name": "Num",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "$tr-glass-2",
+                                  "cornerRadius": "$tr-radius-pill",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "wvfA8",
+                                      "name": "N",
+                                      "fill": "$tr-text",
+                                      "content": "1",
+                                      "fontFamily": "$tr-font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "fQyuO",
+                                  "name": "StepText",
+                                  "fill": "$tr-text",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "판매글을 붙여넣거나 캡처를 올려요",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "$tr-font",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "iC35O",
+                              "name": "Step2",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "c9B5h",
+                                  "name": "Num",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "$tr-glass-2",
+                                  "cornerRadius": "$tr-radius-pill",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "WgGmR",
+                                      "name": "N",
+                                      "fill": "$tr-text",
+                                      "content": "2",
+                                      "fontFamily": "$tr-font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "xHsGg",
+                                  "name": "StepText",
+                                  "fill": "$tr-text",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "AI가 읽은 값을 확인하고 고쳐요",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "$tr-font",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "mdeFE",
+                              "name": "Step3",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "bDE1U",
+                                  "name": "Num",
+                                  "width": 28,
+                                  "height": 28,
+                                  "fill": "$tr-glass-2",
+                                  "cornerRadius": "$tr-radius-pill",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "h84Lm",
+                                      "name": "N",
+                                      "fill": "$tr-text",
+                                      "content": "3",
+                                      "fontFamily": "$tr-font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "aLrkT",
+                                  "name": "StepText",
+                                  "fill": "$tr-text",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "공식 안내와 비교한 결과를 봐요",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "$tr-font",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "l7GZ29",
+                          "name": "ShowCard",
+                          "width": "fill_container",
+                          "fill": "$tr-card",
+                          "cornerRadius": 20,
+                          "effect": {
+                            "type": "background_blur",
+                            "radius": 24
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "q2JNC",
+                              "name": "ShowLabel",
+                              "fill": "$tr-text-sub",
+                              "content": "지금 확인할 수 있는 공연",
+                              "fontFamily": "$tr-font",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "bel2h",
+                              "name": "ShowEmpty",
+                              "fill": "$tr-text-sub",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "아직 확인할 수 있는 공연이 없어요. 관리자가 공연 정보를 등록하면 시작할 수 있어요.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "$tr-font",
+                              "fontSize": 16,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "oYrC9",
+                          "name": "Grow",
+                          "width": "fill_container",
+                          "height": "fill_container"
+                        },
+                        {
+                          "id": "o9oZ0",
+                          "type": "ref",
+                          "ref": "i5xHzs",
+                          "name": "Primary",
+                          "width": "fill_container",
+                          "descendants": {
+                            "tmSOw": {
+                              "icon": "search"
+                            },
+                            "qJ7UG": {
+                              "content": "판매글 확인하기"
+                            }
+                          }
+                        },
+                        {
+                          "id": "O3reCp",
+                          "type": "ref",
+                          "ref": "j8oOC8",
+                          "name": "FooterNote"
                         }
                       ]
                     }
