@@ -100,9 +100,9 @@ pen 파일의 색 토큰은 이제 `mode` 테마 축으로 **다크·라이트 �
 
 | 토큰 | 값 | 쓰는 곳 |
 |---|---|---|
-| `tr-font` | Noto Sans KR | 모든 글자 |
-| `tr-font-display` | Noto Serif KR | ① 첫 화면 제목 한 줄만 (Suno의 큰 질문 제목처럼) |
-| `tr-size-display` | 28 | ① 제목 |
+| `tr-font` | Pretendard | 모든 글자 |
+| `tr-font-display` | Pretendard (굵기 700) | 화면 제목 한 줄(홈 큰 제목, 각 화면 제목). 2026-11-15부터 세리프(Noto Serif KR) 대신 본문과 같은 글꼴의 굵은 체로 통일 |
+| `tr-size-display` | 28 | 화면 제목 한 줄(홈 큰 제목, 각 화면 제목) |
 | `tr-size-title` | 22 | ② 읽은 값(가격·좌석), ③ 요약 제목 |
 | `tr-size-value` | 20 | ③ 판매글 인용 구절 |
 | `tr-size-body` | 16 | 본문, 공식 안내 문장, 쉬운 말 설명, 버튼 글자. **본문 최소 크기** |
@@ -110,7 +110,9 @@ pen 파일의 색 토큰은 이제 `mode` 테마 축으로 **다크·라이트 �
 | `tr-size-label` | 13 | 배지, 칩, 회색 알약 글자, 출처, 고정 문구 |
 | `tr-size-micro` | 12 | **쓰지 않는다.** pen 변수로만 남아 있고 어떤 글자에도 연결돼 있지 않다(가독성 점검 때 모두 13으로 올림). 코드에는 옮기지 말 것 |
 
-굵기: 제목·값·버튼 600, 배지 700, 본문 400.
+굵기: 화면 제목(`tr-font-display`) 700, 제목·값·버튼 600, 배지 700, 본문 400.
+
+글꼴 파일(2026-11-15 교체): Pretendard v1.3.9 가변 글꼴 `client/public/fonts/PretendardVariable.woff2` 하나(약 2.0MB, 굵기 45~920)를 저장소에 두고 `@font-face`로 읽는다. 출처는 공식 저장소 https://github.com/orioncactus/pretendard (릴리스 v1.3.9), 라이선스는 SIL OFL 1.1(`client/public/fonts/LICENSE.txt`). 발표장 인터넷이 끊겨도 같은 글꼴이 보이도록 CDN(Google Fonts)은 쓰지 않는다. 다크 디자인과 다른 토큰 값은 그대로다. pen 목업(`ticket_rader_mock.pen`)의 글꼴 변수는 아직 Noto 계열이다.
 
 ## 3. 모서리·여백·높이 (number)
 
@@ -154,7 +156,7 @@ pen.dev 메모: 숫자 토큰은 padding·gap·fontSize·cornerRadius에는 `$tr
 | DS/Segment | 40px `tr-glass-1` 상자, 안쪽 3, 선택 칸만 `tr-glass-3` 알약 + 글자 15/500 | ② "텍스트 ｜ 캡처 1장" |
 | DS/Segment Actions | 44px `tr-glass-1` 상자, 가운데 세로선, 양쪽 아이콘 16 + 글자 14/400 | ① 빈 상태의 입력 방법 2개(쓸 경우) |
 | DS/Status, DS/TopBar | 44px 상태 바 / 56px 상단 바(뒤로가기 원·제목 15·오른쪽 칩, 각각 켜고 끌 수 있음) | 전 화면 |
-| DS/Hero | **가운데 정렬** 세리프 제목 28/**500** + 설명 16 (Suno 온보딩 "Do More With Suno" 식. 600은 원본보다 무거워 보여 500으로 내림, 400 시안도 비교함). Suno Simple 만들기 화면 자체에는 이런 큰 제목이 없다 — 온보딩 제목 + 만들기 입력 카드를 **조합**한 것 | ① |
+| DS/Hero | **가운데 정렬** 제목 28 + 설명 16 (Suno 온보딩 "Do More With Suno" 식). 처음엔 세리프 28/500이었고, 2026-11-15부터 코드는 Pretendard 28/700(pen 목업은 아직 세리프). Suno Simple 만들기 화면 자체에는 이런 큰 제목이 없다 — 온보딩 제목 + 만들기 입력 카드를 **조합**한 것 | ① |
 | DS/Input Card | Suno Simple 만들기 카드: 모서리 20, 안쪽 16, 위에 + 원 36 + 점선 칩 36, 본문 16, 첨부(썸네일 52 + 흰 × 배지), 오류 줄(기본 꺼짐), 늘어나는 빈칸, 오른쪽 아래 ? 원 36. **화면에서는 높이를 fill로 주어 주요 버튼 위까지 채운다**(정상 상태 카드 높이 약 512: 긴 판매글 입력용으로 현행 유지, 짧은 글·키보드 상태는 구현 때 다시 본다) | ① 다섯 상태 |
 | DS/Official Block | `tr-inner` 상자(모서리 12): "공식 안내" 12 / 문장 16 / 출처 13 (Suno 카드 안의 "14 Remixes" 같은 안쪽 상자) | ③, ④ |
 | DS/Result Item | 카드 모서리 20: 이름 16 + 심각도 라벨, 인용 20, Official Block, 설명 16, 알약 2개 | ③ |

@@ -3,6 +3,16 @@
  * 라이트는 나중에 :root[data-theme='light'] 에 같은 이름으로 값만 바꿔 넣는다.
  * 컴포넌트는 값을 직접 쓰지 않고 이 변수만 쓴다.
  */
+
+/* Pretendard(SIL OFL 1.1, public/fonts/LICENSE.txt). 발표장 인터넷이 끊겨도 보이게 저장소 안 파일을 쓴다. 가변 글꼴 하나로 굵기 400~700 */
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/PretendardVariable.woff2') format('woff2');
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* 바탕·면 */
   --tr-bg: #0b0b0d;
@@ -49,8 +59,8 @@
   --tr-success: #4ade80;
 
   /* 글꼴 */
-  --tr-font: 'Noto Sans KR', system-ui, sans-serif;
-  --tr-font-display: 'Noto Serif KR', serif;
+  --tr-font: 'Pretendard', system-ui, sans-serif;
+  --tr-font-display: 'Pretendard', system-ui, sans-serif;
   --tr-size-display: 28px;
   --tr-size-title: 22px;
   --tr-size-value: 20px;

@@ -19,8 +19,12 @@ export const RULE_LABELS: Record<RuleType, string> = {
 
 export const CATEGORY_LABELS: Record<Category, string> = { CONCERT: '공연', SPORTS: '스포츠' }
 
-// ③ "공식 신고센터" 링크(공연 종류별 1개). 팀이 공식 주소를 확인해 넣기 전까지 비워 두고, 비어 있으면 버튼을 숨긴다.
-export const REPORT_CENTER_URLS: Record<Category, string> = { CONCERT: '', SPORTS: '' }
+// ③ "공식 신고센터" 링크(공연 종류별 1개). 문화체육관광부 신고 안내(https://www.culture.go.kr/singo/)가
+// 분야별 "신고하기" 버튼으로 연결하는 주소를 그대로 쓴다(2026-11-15 확인). 주소가 바뀌면 위 안내 페이지로 되돌린다.
+export const REPORT_CENTERS: Record<Category, { label: string; url: string }> = {
+  CONCERT: { label: '공연 분야', url: 'https://ent.kocca.kr/ticket/receive.do' },
+  SPORTS: { label: '스포츠 분야', url: 'https://cleanpass.kspo.or.kr' },
+}
 
 /** "2026-12-20T18:00:00" → "2026년 12월 20일 18:00" (서버가 한국 시간으로 준다) */
 export function formatStartsAt(startsAt: string): string {

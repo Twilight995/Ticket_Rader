@@ -1,7 +1,7 @@
 // 화면 ③ 확인사항 결과: 판매글의 어느 부분이 공식 안내와 다른지 근거와 함께 본다. 비교 요청은 이 화면이 보낸다.
 import type { CheckResult, ExtractResult, Finding, TicketEvent } from '../api.ts'
 import type { RequestState } from '../hooks.ts'
-import { REPORT_CENTER_URLS } from '../labels.ts'
+import { REPORT_CENTERS } from '../labels.ts'
 import { AppHeader, EventInfo, SourceCard, TwoColumn } from '../components/Layout.tsx'
 import { Badge, Card, ErrorNotice, FooterNote, Pill, ProgressPill, Skeleton, Tag } from '../components/ui.tsx'
 
@@ -60,7 +60,7 @@ function ResultBody({ checkState, eventState, onRetry, onBackToReview, onNewList
   }
   const { summary, findings, officialUrl } = checkState.data
   const category = eventState.status === 'success' ? eventState.data?.category : undefined
-  const reportUrl = category ? REPORT_CENTER_URLS[category] : ''
+  const reportCenter = category ? REPORT_CENTERS[category] : null
   return (
     <>
       <h2 className="tr-summary">{summary}</h2>
@@ -73,7 +73,7 @@ function ResultBody({ checkState, eventState, onRetry, onBackToReview, onNewList
       )}
       <div className="tr-row tr-row--wrap">
         <Pill variant="white" icon="refresh" onClick={onNewListing}>다른 판매글 확인하기</Pill>
-        {reportUrl && <Pill icon="external" href={reportUrl}>공식 신고센터</Pill>}
+        {reportCenter && <Pill icon="external" href={reportCenter.url}>공식 신고센터 · {reportCenter.label}</Pill>}
       </div>
     </>
   )

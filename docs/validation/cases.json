@@ -1,0 +1,67 @@
+{
+  "_comment": "6단계 검증표 데이터. 전부 가상 글이다(실제 사람·실제 글 아님, 연락처는 010-0000 대역과 가짜 계좌·아이디). docs/validation.md 표, 서버 테스트 ValidationCasesTest, scripts/validate.ps1 이 이 파일 하나를 같이 쓴다. 기대값은 seed 공연(VIP 165,000 / R 143,000 / S 121,000, 규정: 현장 수령 필수·캡처 입장 불가·본인 확인 필수)과 기준값(배율 1.5, 수량 4) 기준.",
+  "cases": [
+    {
+      "id": 1,
+      "text": "[양도] VIP석 1장 정가 165,000원 그대로 양도합니다. 공연 당일 현장 매표소 앞에서 만나서 전달하고, 결제도 만나서 해요.",
+      "expected": { "pricePerTicket": 165000, "seat": "VIP석", "quantity": 1, "deliveryMethod": "ON_SITE_PICKUP", "prepaymentRequired": false },
+      "expectedFindings": []
+    },
+    {
+      "id": 2,
+      "text": "S석 2층 1장 12만원에 넘겨요(정가보다 조금 싸게). 일정이 생겨서 못 가게 됐어요. 공연 당일 현장에서 만나서 전달하고 돈은 그때 받을게요. 문자 010-0000-2201",
+      "expected": { "pricePerTicket": 120000, "seat": "S석 2층", "quantity": 1, "deliveryMethod": "ON_SITE_PICKUP", "prepaymentRequired": false },
+      "expectedFindings": []
+    },
+    {
+      "id": 3,
+      "text": "R석 1장 18만 원에 팔아요. 선입금 부탁드리고, 입금 확인되면 공연 당일 현장에서 만나서 드려요. 계좌 가상은행 000-0000-0000",
+      "expected": { "pricePerTicket": 180000, "seat": "R석", "quantity": 1, "deliveryMethod": "ON_SITE_PICKUP", "prepaymentRequired": true },
+      "expectedFindings": ["PRICE_ABOVE_LIST:CAUTION", "PREPAYMENT_REQUESTED:CAUTION"]
+    },
+    {
+      "id": 4,
+      "text": "VIP석 A구역 2장 양도해요. 장당 25만. 선입금 확인 후 QR 캡처로 보내드려요. 연락 010-0000-1234",
+      "expected": { "pricePerTicket": 250000, "seat": "VIP석 A구역", "quantity": 2, "deliveryMethod": "CAPTURE_QR", "prepaymentRequired": true },
+      "expectedFindings": ["PRICE_ABOVE_LIST:CHECK", "DELIVERY_CONFLICTS_RULE:CHECK", "PREPAYMENT_REQUESTED:CAUTION"]
+    },
+    {
+      "id": 5,
+      "text": "S석 1장 정가 121,000원에 양도. 예매한 계정 아이디와 비밀번호를 그대로 넘겨드려요. 입금 확인되면 바로 계정 정보 보내드립니다. 오픈채팅 open.kakao.com/o/fake0000",
+      "expected": { "pricePerTicket": 121000, "seat": "S석", "quantity": 1, "deliveryMethod": "ACCOUNT_TRANSFER", "prepaymentRequired": true },
+      "expectedFindings": ["DELIVERY_CONFLICTS_RULE:CHECK", "PREPAYMENT_REQUESTED:CAUTION"]
+    },
+    {
+      "id": 6,
+      "text": "R석 1장 14만원에 양도합니다. 예매처 앱의 모바일 티켓 선물하기로 보내드려요. 텔레그램 @fake_seller0000",
+      "expected": { "pricePerTicket": 140000, "seat": "R석", "quantity": 1, "deliveryMethod": "MOBILE_TICKET_TRANSFER", "prepaymentRequired": null },
+      "expectedFindings": ["DELIVERY_CONFLICTS_RULE:CHECK"]
+    },
+    {
+      "id": 7,
+      "text": "S석 연석 4장 일괄로 넘겨요. 장당 13만 원. 종이 티켓이라 택배로 보내드리고, 받아 보시고 입금해 주세요. 010-0000-3307",
+      "expected": { "pricePerTicket": 130000, "seat": "S석", "quantity": 4, "deliveryMethod": "OTHER", "prepaymentRequired": false },
+      "expectedFindings": ["PRICE_ABOVE_LIST:CAUTION", "QUANTITY_HIGH:INFO"]
+    },
+    {
+      "id": 8,
+      "text": "스탠딩 P구역 1장 20만에 양도해요. 모바일 티켓으로 전송해 드려요. 문의 010-0000-4408",
+      "expected": { "pricePerTicket": 200000, "seat": "스탠딩 P구역", "quantity": 1, "deliveryMethod": "MOBILE_TICKET_TRANSFER", "prepaymentRequired": null },
+      "expectedFindings": ["DELIVERY_CONFLICTS_RULE:CHECK", "PRICE_NOT_COMPARABLE:INFO"]
+    },
+    {
+      "id": 9,
+      "image": "case-09.png",
+      "text": "R석 2장 40만 (2장 같이만 팔아요). 선입금 후 티켓 캡처 이미지로 보내드려요. 카톡 아이디 fake_ticket00",
+      "expected": { "pricePerTicket": 200000, "seat": "R석", "quantity": 2, "deliveryMethod": "CAPTURE_QR", "prepaymentRequired": true },
+      "expectedFindings": ["DELIVERY_CONFLICTS_RULE:CHECK", "PRICE_ABOVE_LIST:CAUTION", "PREPAYMENT_REQUESTED:CAUTION"]
+    },
+    {
+      "id": 10,
+      "image": "case-10.png",
+      "text": "VIP석 1장 30만원에 양도합니다. 공연 당일 현장에서 만나서 전달, 돈은 만날 때 주세요. 010-0000-5510",
+      "expected": { "pricePerTicket": 300000, "seat": "VIP석", "quantity": 1, "deliveryMethod": "ON_SITE_PICKUP", "prepaymentRequired": false },
+      "expectedFindings": ["PRICE_ABOVE_LIST:CHECK"]
+    }
+  ]
+}
