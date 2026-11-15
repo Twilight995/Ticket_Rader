@@ -1,0 +1,433 @@
+/* 공통 부품의 모양 (design-tokens.md 4장). 색·크기·여백은 index.css 의 토큰만 쓴다. */
+
+/* ---------- 버튼 ---------- */
+.tr-primary {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tr-space-xs);
+  height: var(--tr-h-cta);
+  border: 0;
+  border-radius: var(--tr-radius-pill);
+  /* 셰이더 질감(suno-cta.glsl)의 대체 그라데이션 */
+  background: linear-gradient(100deg, var(--tr-grad-1), var(--tr-grad-2) 60%, var(--tr-grad-3));
+  color: var(--tr-on-cta);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tr-primary:disabled {
+  background: var(--tr-chip);
+  color: var(--tr-text-placeholder);
+  cursor: not-allowed;
+}
+
+.tr-primary--home {
+  width: 100%;
+}
+
+.tr-cta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--tr-space-sm);
+}
+
+.tr-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  max-width: 100%;
+  padding: 4px var(--tr-space-sm) 4px 10px;
+  border: 0;
+  border-radius: var(--tr-radius-pill);
+  background: var(--tr-glass-2);
+  color: var(--tr-text);
+  font-size: var(--tr-size-label);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.tr-pill--white {
+  min-height: var(--tr-h-white-pill);
+  padding: 0 20px;
+  background: var(--tr-text);
+  color: var(--tr-on-light);
+  font-size: var(--tr-size-small);
+  font-weight: 500;
+}
+
+.tr-pill--link {
+  color: var(--tr-pink);
+  font-weight: 500;
+}
+
+.tr-pill--static {
+  cursor: default;
+}
+
+.tr-pill:disabled,
+.tr-circle:disabled,
+.tr-chip-dashed:disabled,
+.tr-text-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tr-text-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--tr-space-xs);
+  border: 0;
+  background: none;
+  color: var(--tr-text-sub);
+  font-size: var(--tr-size-small);
+  cursor: pointer;
+}
+
+.tr-circle {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  border-radius: var(--tr-radius-pill);
+  background: var(--tr-glass-2);
+  cursor: pointer;
+}
+
+.tr-circle--cta {
+  width: var(--tr-h-cta);
+  height: var(--tr-h-cta);
+}
+
+.tr-circle--tool {
+  width: var(--tr-h-circle);
+  height: var(--tr-h-circle);
+}
+
+.tr-chip-dashed {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: var(--tr-h-pill);
+  padding: 0 14px;
+  border: 1px dashed var(--tr-dash);
+  border-radius: var(--tr-radius-pill);
+  background: none;
+  font-size: var(--tr-size-label);
+  cursor: pointer;
+}
+
+.tr-chip,
+.tr-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  max-width: 100%;
+  padding: 4px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--tr-radius-pill);
+  background: var(--tr-glass-1);
+  color: var(--tr-text-soft);
+  font-size: var(--tr-size-label);
+  overflow-wrap: anywhere;
+}
+
+.tr-chip {
+  align-self: flex-start;
+}
+
+.tr-choice {
+  cursor: pointer;
+}
+
+.tr-choice[aria-pressed='true'] {
+  background: transparent;
+  border-color: var(--tr-line);
+  color: var(--tr-text);
+}
+
+.tr-toggle {
+  position: relative;
+  flex: none;
+  width: 46px;
+  height: 28px;
+  border: 0;
+  border-radius: var(--tr-radius-pill);
+  background: var(--tr-glass-3);
+  cursor: pointer;
+}
+
+.tr-toggle[aria-checked='true'] {
+  background: var(--tr-pink);
+}
+
+.tr-toggle__knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--tr-radius-pill);
+  background: var(--tr-text);
+  transition: transform 0.15s;
+}
+
+.tr-toggle[aria-checked='true'] .tr-toggle__knob {
+  transform: translateX(18px);
+}
+
+/* ---------- 입력칸 ---------- */
+.tr-field,
+.tr-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tr-space-xs);
+  min-width: 0;
+}
+
+.tr-field__label {
+  font-size: var(--tr-size-small);
+  font-weight: 600;
+  color: var(--tr-text-sub);
+  padding: 0;
+}
+
+.tr-field__error {
+  font-size: var(--tr-size-small);
+  color: var(--tr-error);
+}
+
+.tr-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tr-space-sm);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.tr-input {
+  width: 100%;
+  min-height: var(--tr-h-field);
+  padding: 0 var(--tr-space-sm);
+  border: 1.5px solid transparent;
+  border-radius: var(--tr-radius-field);
+  background: var(--tr-glass-1);
+}
+
+.tr-input:focus-visible {
+  outline: none;
+  border-color: var(--tr-pink);
+}
+
+.tr-input[aria-invalid='true'] {
+  border-color: var(--tr-error);
+}
+
+.tr-input--value {
+  font-size: var(--tr-size-title);
+  font-weight: 600;
+  padding-block: 6px;
+}
+
+.tr-input--link {
+  color: var(--tr-pink);
+}
+
+select.tr-input option {
+  background: var(--tr-sheet);
+}
+
+.tr-cell__label {
+  font-size: var(--tr-size-label);
+  color: var(--tr-text-sub);
+}
+
+.tr-option__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--tr-space-xs);
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+}
+
+.tr-option__toggle .tr-hint {
+  margin-left: auto;
+  font-weight: 400;
+}
+
+.tr-option__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tr-space-md);
+  padding-top: var(--tr-space-xs);
+}
+
+.tr-attachment {
+  display: flex;
+  align-items: center;
+  gap: var(--tr-space-sm);
+}
+
+.tr-attachment__thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--tr-radius-inner);
+  object-fit: cover;
+  background: var(--tr-thumb);
+}
+
+.tr-attachment__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--tr-size-small);
+  color: var(--tr-text-sub);
+}
+
+/* ---------- 안내·상태 ---------- */
+.tr-info-line {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--tr-space-xs);
+  font-size: var(--tr-size-small);
+  color: var(--tr-text-sub);
+}
+
+.tr-info-line svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.tr-info-line--error {
+  color: var(--tr-error);
+}
+
+.tr-error-notice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tr-space-sm);
+  padding: var(--tr-space-xl) var(--tr-space-md);
+  text-align: center;
+  color: var(--tr-error);
+}
+
+.tr-error-notice__title {
+  color: var(--tr-text);
+  font-weight: 600;
+}
+
+.tr-badge {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 24px;
+  font-size: var(--tr-size-label);
+  font-weight: 700;
+}
+
+.tr-badge--info {
+  color: var(--tr-sev-info-fg);
+}
+
+.tr-badge--caution {
+  color: var(--tr-sev-warn-fg);
+}
+
+.tr-badge--check {
+  color: var(--tr-sev-check-fg);
+}
+
+.tr-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tr-skeleton__bar {
+  display: block;
+  height: 16px;
+  border-radius: var(--tr-radius-field);
+  background: var(--tr-chip);
+  animation: tr-pulse 1.4s ease-in-out infinite;
+}
+
+.tr-skeleton__bar--title {
+  width: 120px;
+  height: 14px;
+}
+
+.tr-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tr-space-sm);
+  min-height: 56px;
+  border-radius: var(--tr-radius-pill);
+  background: var(--tr-inner);
+}
+
+.tr-progress__spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--tr-glass-2);
+  border-top-color: var(--tr-pink);
+  border-radius: var(--tr-radius-pill);
+  animation: tr-spin 0.9s linear infinite;
+}
+
+.tr-footer-note {
+  text-align: center;
+  font-size: var(--tr-size-label);
+  color: var(--tr-text-sub);
+  padding: var(--tr-space-sm) 0;
+}
+
+.tr-page--with-veil {
+  padding-bottom: 96px;
+}
+
+.tr-veil {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 68px;
+  padding: 0 var(--tr-space-md);
+  background: var(--tr-bg-veil);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.tr-toast {
+  position: fixed;
+  left: 50%;
+  bottom: var(--tr-space-xl);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 20px;
+  border-radius: var(--tr-radius-field);
+  background: var(--tr-text);
+  color: var(--tr-on-light);
+  font-size: var(--tr-size-small);
+  white-space: nowrap;
+}

@@ -14,5 +14,13 @@ if ($null -eq $mysql) {
     exit 1
 }
 
+# 화면(React)을 빌드해 두면 서버가 http://localhost:8080 에서 화면도 함께 제공한다(pom.xml 의 copy-client-dist).
+Set-Location "$root\client"
+if (-not (Test-Path "node_modules")) { npm install }
+npm run build
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "화면 빌드에 실패했습니다. 예전에 빌드한 화면이 있으면 그 화면으로, 없으면 API 서버만 띄웁니다." -ForegroundColor Yellow
+}
+
 Set-Location "$root\server"
 .\mvnw.cmd -q spring-boot:run

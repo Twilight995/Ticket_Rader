@@ -20,3 +20,7 @@
 - 4단계 실제 키 확인(2026-11-01 저녁): 모델 코드는 `gemini-3.5-flash-lite`(AI Studio 표시 이름이 아니라 코드를 `.env`의 `AI_MODEL`에 적어야 함). 처음엔 4회 중 1회꼴로 `fallback`이 났는데, 원인은 모델이 `evidence.seat`(좌석 근거) 칸에 판매글 전체를 반복해 쓰다 출력 한도에 걸리는 것이었다(생각 토큰 아님, 직접 호출로 확인). 좌석 근거 칸을 스키마에서 빼고(좌석 값 자체가 근거) 근거는 20자 이내로 지시, 한도를 넘으면 1회 재시도, 출력 한도 1024로 조정 → 가상 글 3건×2회 + 가상 캡처 2회 = 8/8 성공, 값 전부 정확, 응답 어디에도 연락처 없음. 남은 품질 이슈: `evidence.quantity`에 문장 뒷부분이 길게 딸려 올 때가 있다(120자에서 자름, 화면에는 작은 글씨라 영향 적음).
 - 연기 테스트 `GeminiLiveSmokeTest`: `GEMINI_API_KEY`·`AI_MODEL` 환경 변수가 있을 때만 실제 API를 한 번 부른다(없으면 자동 건너뜀). 실행: `GEMINI_API_KEY=... AI_MODEL=gemini-3.5-flash-lite ./mvnw test -Dtest=GeminiLiveSmokeTest`.
 - 다음: 5단계 화면(⓪①②③⑤). 4단계 fallback 경로(키 제거)는 단위 테스트와 `AI_PROVIDER=none` 설정으로 보장되며, 실서버에서는 서버 시작 로그에 "extraction will always fall back"이 찍히는지로 확인한다.
+
+## 2026-11-15
+
+- 5단계 화면(브랜치 `feat/stage5-screens`, 미커밋): ⓪ 홈 → ① 입력 → ② 읽은 값 확인 → ③ 결과, ⑤ 관리자(`#/admin`)를 토큰 CSS 변수(`index.css`)와 공통 부품으로 조립. 네 상태 모두, 새 의존성 없음. `npm run build`·린트 통과, 화면 테스트 8개(`client`에서 `npm test`, 금지 단어 검사 포함) 통과, 서버 테스트 67개 통과. 브라우저 확인(H2 + `AI_PROVIDER=none`): AI 없이 ① → ② 직접 입력 → ③ 3건 완주, 정상 글 0건 빈 상태, 390·768px 가로 스크롤 없음, 1024px 두 단(320 + 616). 빌드된 화면은 `pom.xml`의 `copy-client-dist`로 서버가 http://localhost:8080 에서 제공하고 `start.ps1`이 먼저 빌드한다. 가안: 주소는 해시(`#/input`), ①이 추출 요청(로딩·연결 실패를 ①에), ③이 비교 요청(로딩·오류를 ③에, ②에 있는 칸의 400만 ②로 되돌림). 남은 것: ③ "공식 신고센터" 주소 미정이라 숨김(`labels.ts`의 `REPORT_CENTER_URLS`), ② 로딩 상태는 이 설계에서 거의 안 보임, 라이트 모드, 부속 화면(시트·삭제 확인·404).

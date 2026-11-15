@@ -18,9 +18,11 @@ powershell -ExecutionPolicy Bypass -File scripts\start.ps1
 같은 일을 손으로 하려면: `cd server` → `.\mvnw.cmd spring-boot:run`
 
 - 확인: 브라우저에서 http://localhost:8080/api/health → `{"ok":true,"data":{"status":"up"},"error":null}`
+- 화면: `start.ps1`이 화면을 먼저 빌드(`client`에서 `npm run build`)하므로 http://localhost:8080 에서 홈이 열린다. 서버 빌드가 `client/dist`를 정적 폴더로 복사한다(`pom.xml`의 `copy-client-dist`). 손으로 띄울 때는 `client`에서 `npm run build`를 먼저 한다.
+- 관리자 화면: http://localhost:8080/#/admin → 브라우저 기본 로그인창에 아이디 `admin`, 비밀번호는 `.env`의 `ADMIN_PASSWORD`.
 - 데이터베이스 `ticket_radar`는 서버가 처음 붙을 때 없으면 만든다(JDBC URL의 `createDatabaseIfNotExist`).
 
-화면(React) 개발 서버는 따로 띄운다. `/api` 요청은 Vite가 8080으로 넘겨 준다.
+화면을 고치면서 볼 때는 개발 서버를 따로 띄운다(저장하면 바로 바뀐다). `/api` 요청은 Vite가 8080으로 넘겨 준다.
 
 ```powershell
 cd client; npm install; npm run dev
@@ -56,7 +58,7 @@ Failed to initialize JPA EntityManagerFactory: ... Unable to determine Dialect w
 | `GET` / `PUT /api/admin/event` 관리자 조회·저장 (HTTP Basic, 아이디 `admin`, 비밀번호 `.env`의 `ADMIN_PASSWORD`) | 동작 |
 | `POST /api/check` 비교(확인사항 계산, 규칙 엔진) | 동작 |
 | `POST /api/extract` AI 추출 (연락처 마스킹 → AI, 실패하면 `fallback`) | 동작 (공급자는 `.env`의 `AI_PROVIDER`, 1차 Gemini 무료 티어) |
-| 화면 ⓪①②③⑤ | 5단계 |
+| 화면 ⓪ 홈 → ① 판매글 입력 → ② 읽은 값 확인 → ③ 확인사항 결과, ⑤ 관리자(`#/admin`) | 동작 (5단계, 다크 모드 1차. AI가 꺼져 있어도 ②가 빈 폼으로 열려 끝까지 진행) |
 
 직접 눌러 보기 (서버가 떠 있을 때, PowerShell):
 
@@ -81,6 +83,12 @@ cd server; .\mvnw.cmd test
 ```
 
 테스트는 메모리 DB(H2, MySQL 모드)로 돌아가므로 로컬 MySQL이 없어도 된다. 실제 Gemini를 한 번 불러 보는 연기 테스트는 키가 환경 변수에 있을 때만 돈다: `GEMINI_API_KEY=... AI_MODEL=gemini-3.5-flash-lite ./mvnw test -Dtest=GeminiLiveSmokeTest`. 수용 기준(정상 양도 글 2건 → 확인사항 0건, 시연 글 → 정확히 3건, 기준값 변경 시 결과 변화, 같은 입력 → 같은 결과, 금지 단어 없음)이 `RuleEngineTest`·`ForbiddenWordsTest`에 자동 테스트로 들어 있다.
+
+화면 테스트는 Node 내장 테스트 도구로 돌린다(새 라이브러리 없음, Node 22.18 이상 필요). 화면 문구 금지 단어 검사, ② 값 변환(고친 칸의 근거를 `null`로), ⑤ 주소 형식 검사가 들어 있다.
+
+```powershell
+cd client; npm test
+```
 
 ## 폴더
 
